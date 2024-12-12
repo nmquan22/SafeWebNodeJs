@@ -1,17 +1,182 @@
-<section class="dashboard">
-    <h2>Dashboard</h2>
-    <div class="stats">
-        <div class="stat">
-            <h3>Total Users</h3>
-            <p><%= data.totalUsers %></p>
-        </div>
-    </div>
-    <div class="features">
-        <% data.features.forEach(feature => { %>
-            <div class="feature">
-                <span class="icon"><%= feature.icon %></span>
-                <h4><%= feature.title %></h4>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            background-color: #F5F6FA; /* Soft light gray background */
+            display: flex;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .layout {
+            display: flex;
+            height: 100vh; /* Full height of the viewport */
+        }
+
+        .sidebar {
+            width: 250px; /* Fixed width for sidebar */
+            background-color: #FFFFFF; /* Dark background for sidebar */
+            color: black; /* White text for contrast */
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+            height: 100%; /* Full height */
+        }
+
+        .sidebar .logo h2 {
+            margin-bottom: 20px;
+        }
+
+        .sidebar .menu {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar .menu li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar .menu a {
+            color: black;
+            text-decoration: none;
+        }
+
+        .sidebar .menu a.active {
+            background-color: #6c5ce7; /* Purple highlight for active menu item */
+        }
+
+        .sidebar .menu a:hover {
+            background-color: #3c3b3b; /* Darker hover effect */
+        }
+
+        .settings {
+            margin-top: auto; /* Pushes Settings and Logout to the bottom */
+            display: flex; /* Use flexbox for alignment */
+            justify-content: space-between; /* Space them evenly */
+        }
+
+        .settings a {
+            display: block; /* Ensures each link takes its own line */
+            margin-bottom: 10px;
+        }
+
+        .content {
+            flex-grow: 1; /* This makes the content take all remaining space */
+            padding: 20px;
+            background-color: #F5F6FA; /* Light background for main content */
+            box-sizing: border-box;
+        }
+
+        .features-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 columns for the first row */
+            gap: 20px; /* Space between each grid item */
+        }
+
+        .features-container-3-cols {
+            grid-template-columns: repeat(3, 1fr); /* 3 columns for the second row */
+            gap: 20px; /* Space between each grid item */
+        }
+
+        .feature-card {
+            background-color: #FFFFFF; /* White background for feature cards */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .icon {
+            font-size: 24px;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="logo">
+                <h2>SafeWeb</h2>
             </div>
-        <% }) %>
+            <ul class="menu">
+                <li><a href="/" class="active"><i class="icon">🏠</i> Dashboard</a></li>
+                <li><a href="#"><i class="icon">📦</i> Products</a></li>
+                <li><a href="#"><i class="icon">❤️</i> Favorites</a></li>
+                <li><a href="#"><i class="icon">✉️</i> Inbox</a></li>
+            </ul>
+            <ul class="menu secondary">
+                <li><a href="#"><i class="icon">📅</i> Calendar</a></li>
+                <li><a href="#"><i class="icon">📋</i> To-Do</a></li>
+                <li><a href="#"><i class="icon">📇</i> Contact</a></li>
+                <li><a href="#"><i class="icon">📃</i> Invoice</a></li>
+            </ul>
+            <div class="settings">
+                <a href="#"><i class="icon">⚙️</i> Settings</a>
+                <a href="#"><i class="icon">🔓</i> Logout</a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="content">
+            <h2>Dashboard</h2>
+
+            <!-- First row of feature cards -->
+            <div class="features-container">
+                <div class="feature-card" onclick="window.location.href='page1.html';">
+                    <div class="icon">🌟</div>
+                    <h4>Feature 1</h4>
+                    <p>Description of feature 1</p>
+                </div>
+                <div class="feature-card" onclick="window.location.href='page2.html';">
+                    <div class="icon">🔍</div>
+                    <h4>Feature 2</h4>
+                    <p>Description of feature 2</p>
+                </div>
+                <div class="feature-card" onclick="window.location.href='page3.html';">
+                    <div class="icon">📊</div>
+                    <h4>Feature 3</h4>
+                    <p>Description of feature 3</p>
+                </div>
+                <div class="feature-card" onclick="window.location.href='page4.html';">
+                    <div class="icon">📧</div>
+                    <h4>Feature 4</h4>
+                    <p>Description of feature 4</p>
+                </div>
+            </div>
+
+            <!-- Space between first and second row -->
+            <div class="section-spacing" style="margin-top: 40px;"></div>
+
+            <!-- Second row of feature cards -->
+            <div class="features-container">
+                <div class="feature-card" onclick="window.location.href='page5.html';">
+                    <div class="icon">⚙️</div>
+                    <h4>Feature 5</h4>
+                    <p>Description of feature 5</p>
+                </div>
+                <div class="feature-card" onclick="window.location.href='page6.html';">
+                    <div class="icon">📅</div>
+                    <h4>Feature 6</h4>
+                    <p>Description of feature 6</p>
+                </div>
+                <div class="feature-card" onclick="window.location.href='page7.html';">
+                    <div class="icon">📈</div>
+                    <h4>Feature 7</h4>
+                    <p>Description of feature 7</p>
+                </div>
+            </div>
+        </main>
     </div>
-</section>
+</body>
+</html>

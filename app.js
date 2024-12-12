@@ -19,5 +19,5 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', dashboardController.getDashboard);
 
 // Start server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 300;
 app.listen(PORT, () => console.log(`Server is running on http://localhost:${PORT}`));

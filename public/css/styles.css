@@ -1,7 +1,7 @@
 /* Global Body Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #4880FF; /* Mau xam (light gray) background for the entire page */
+    background-color: #F5F6FA; /* Light gray background */
     margin: 0;
     padding: 0;
     color: #333; /* Text color */
@@ -12,27 +12,32 @@ body {
     padding: 20px;
 }
 
-/* Features container grid */
-.features-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid layout */
-    gap: 20px; /* Spacing between feature cards */
-}
 
 /* Feature Card Styles */
 .feature-card {
-    background-color: #fff; /* White background for individual feature cards */
+    background-color: #fff; /* White background for feature cards */
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
     text-align: center;
     transition: transform 0.3s ease; /* Smooth effect on hover */
+    cursor: pointer; /* Pointer cursor on hover */
 }
 
 .feature-card:hover {
     transform: translateY(-10px); /* Elevate on hover */
 }
+.features-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns for one row */
+    gap: 30px; /* Spacing between feature cards */
+}
 
+.features-container-3-cols {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns for one row */
+    gap: 30px; /* Spacing between feature cards */
+}
 .feature-card .icon {
     font-size: 36px;
     color: #6c5ce7; /* Icon color */
@@ -41,10 +46,14 @@ body {
 
 .feature-card h4 {
     font-size: 18px;
+    color: red; /* Red color for titles */
     margin-bottom: 10px;
 }
 
 .feature-card p {
     font-size: 14px;
     color: #777; /* Gray text for descriptions */
+}
+.section-spacing {
+    margin-top: 40px; /* Add space between rows */
 }
