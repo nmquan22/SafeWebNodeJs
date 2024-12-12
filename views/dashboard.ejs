@@ -1,0 +1,17 @@
+<section class="dashboard">
+    <h2>Dashboard</h2>
+    <div class="stats">
+        <div class="stat">
+            <h3>Total Users</h3>
+            <p><%= data.totalUsers %></p>
+        </div>
+    </div>
+    <div class="features">
+        <% data.features.forEach(feature => { %>
+            <div class="feature">
+                <span class="icon"><%= feature.icon %></span>
+                <h4><%= feature.title %></h4>
+            </div>
+        <% }) %>
+    </div>
+</section>

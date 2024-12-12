@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            background-color: #261c13; /* Light gray background */
+        }
+        .feature-card {
+            background-color: #FFFFFF; /* White background for feature cards */
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="logo">
+                <h2>SafeWeb</h2>
+            </div>
+            <ul class="menu">
+                <li><a href="/" class="active"><i class="icon">🏠</i> Dashboard</a></li>
+                <li><a href="#"><i class="icon">📦</i> Products</a></li>
+                <li><a href="#"><i class="icon">❤️</i> Favorites</a></li>
+                <li><a href="#"><i class="icon">✉️</i> Inbox</a></li>
+            </ul>
+            <ul class="menu secondary">
+                <li><a href="#"><i class="icon">📅</i> Calendar</a></li>
+                <li><a href="#"><i class="icon">📋</i> To-Do</a></li>
+                <li><a href="#"><i class="icon">📇</i> Contact</a></li>
+                <li><a href="#"><i class="icon">📃</i> Invoice</a></li>
+            </ul>
+            <div class="settings">
+                <a href="#"><i class="icon">⚙️</i> Settings</a>
+                <a href="#"><i class="icon">🔓</i> Logout</a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="content">
+            <%- body %>
+        </main>
+    </div>
+</body>
+</html>
