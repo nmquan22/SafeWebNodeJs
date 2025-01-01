@@ -1,6 +1,5 @@
 import "./index.css";
 import React from "react";
-import "@fontsource/be-vietnam-pro";
 import ReactDOM from "react-dom/client";
 import App from "./app";
 import { AuthProvider } from "./contexts/authContext"
