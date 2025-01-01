@@ -1,23 +1,33 @@
-const express = require('express');
-const path = require('path');
-const bodyParser = require('body-parser');
-const expressLayouts = require('express-ejs-layouts');
-const dashboardController = require('./controllers/dashboardController');
+import { React } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 
-const app = express();
+import AppPage from "./pages/AppPage";
+import LoginPage from "./pages/LoginPage";
+import ErrorPage from "./pages/ErrorPage";
+import DynamicTitle from "./utils/DynamicTitle";
+import Logout from "./pages/LogoutPage";
 
-app.set('layout', 'layout');
-// Set view engine
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+import "./styles/common.css";
 
-// Middleware
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
+const App = () => {
+    const location = useLocation();
 
-// Routes
-app.get('/', dashboardController.getDashboard);
+    return (
+        <>
+        <Helmet>
+            <title>{DynamicTitle(location.pathname)}</title>
+        </Helmet>
+        
+        <Routes>
+            <Route path="/" element={<Navigate to="/login" replace={true} />} />
 
-// Start server
-const PORT = process.env.PORT || 300;
-app.listen(PORT, () => console.log(`Server is running on http://localhost:${PORT}`));
+            <Route path={routes.LOGIN} element={<LoginPage />} />
+            <Route path={routes.APP} element={<AppPage />} />
+            <Route path={routes.ERROR} element={<ErrorPage />} />
+            <Route path={routes.LOGOUT} element={<Logout />} />
+        </Routes>
+        </>
+    );
+};
+
+export default App;
