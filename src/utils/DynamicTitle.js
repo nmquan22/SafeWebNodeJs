@@ -1,10 +1,10 @@
 const TitleMap = {
-  "/login": "Đăng nhập",
+  "/login": "Login",
 };
 
 const DynamicTitle = (path) => {
   if (TitleMap[path]) {
-    return `${TitleMap[path]} | CBSV5`;
+    return `${TitleMap[path]} | Safe Web`;
   }
 
   const parts = path.split("/");
@@ -12,10 +12,10 @@ const DynamicTitle = (path) => {
     // Check TitleMap for section-specific titles (e.g., /app/comrades)
     const sectionPath = `/${parts[1]}/${parts[2]}`; // Construct section path
     if (TitleMap[sectionPath]) {
-      return `${TitleMap[sectionPath]} | CBSV5`;
+      return `${TitleMap[sectionPath]} | Safe Web`;
     } else {
       // Fallback to section name for unmatched section paths
-      return `${parts[2]} | CBSV5`;
+      return `${parts[2]} | Safe Web`;
     }
   }
 

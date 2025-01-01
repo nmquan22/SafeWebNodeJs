@@ -25,10 +25,21 @@ const LoginPage = () => {
 
   return (
     <div className="LoginPage">
-      <div className="logo">
-        <img src={Logo} alt="HCMUS" />
+      
+      <div className="form">
+        <div className = "logoContainer">
+          <div className = "emptyContainer">
+          </div>
+          <div className = "imgContainer">
+            <img src={Logo} alt="NoChild" />
+          </div>
+        </div>
+        
+        <div className = "formContainer">
+          <LoginForm />
+        </div>
       </div>
-      <LoginForm />
+      
     </div>
   );
 };

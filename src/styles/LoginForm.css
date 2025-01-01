@@ -35,7 +35,7 @@
 
 .error-message {
     color: red;
-    font-size: 14px;
+    font-size: 8px;
     margin-top: 10px;
     visibility: hidden; /* Hide error message by default */
     position: absolute;
