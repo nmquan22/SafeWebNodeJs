@@ -1,0 +1,104 @@
+.LoginPage {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background-color: #5B86E5;
+}
+
+.LoginPage .form {
+    width: 80%;
+    height: 80%;
+    max-width: 1400px;  /* Limit max width for large screens */
+    display: flex;
+    flex-direction: row;  /* Horizontal layout */
+    justify-content: space-between;
+    align-items: center;
+    background-color: #9ab4ee;
+    border-radius: 10px;
+}
+
+.LoginPage .form .logoContainer {
+    width: 40%;  /* Flex width, changeable based on screen size */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.LoginPage .form .logoContainer .emptyContainer {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 20px;
+}
+
+.LoginPage .form .logoContainer .imgContainer {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 20px;
+}
+
+
+.LoginPage .form .logoContainer .imgContainer img {
+    max-width: 100%;    /* Ensure the logo scales to container */
+    max-height: 50%;   /* Ensure the logo doesn't exceed the container height */
+    object-fit: contain; /* Maintain aspect ratio without distortion */
+}
+
+.LoginPage .form .formContainer {
+    height: 100%;
+    width: 55%;  /* Flex width for form */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.LoginPage .form .formContainer .LoginForm {
+    height: 100%;
+    width: 100%;  /* Full width for the form */
+    max-width: 400px; /* Limit form width on large screens */
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 1080px) {
+    .LoginPage .form {
+        flex-direction: column;  /* Stack logo and form vertically on smaller screens */
+        width: 90%;
+    }
+
+    .LoginPage .form .logoContainer {
+        width: 100%;  /* Take up full width */
+        padding: 10px;
+    }
+
+    .LoginPage .form .formContainer {
+        width: 100%;  /* Take up full width */
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .LoginPage .form .logoContainer {
+        padding: 5px;
+    }
+
+    .LoginPage .form .formContainer .LoginForm {
+        width: 90%;  /* Form takes more space on mobile */
+        padding: 15px;
+    }
+}
