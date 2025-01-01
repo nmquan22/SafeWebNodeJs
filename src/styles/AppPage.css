@@ -1,0 +1,51 @@
+.AppPage {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.TopbarContainer {
+    display: flex;
+    flex-direction: row;
+    height: 10%;
+    width: 100%;
+    border: var(--box-gray-style);
+    box-shadow: none;
+}
+
+.ContentContainer {
+    display: flex;
+    flex-direction: row;
+    height: 85%;
+    width: 100%;
+    overflow: hidden;
+    box-shadow: none;
+    border: var(--box-gray-style);
+}
+
+.ContentContainer .LeftSidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 15%;
+    border: var(--box-gray-style);
+    box-shadow: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.ContentContainer .RightContent {
+    display: flex;
+    flex-direction: row;
+    width: 85%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--blue);
+    border: var(--box-gray-style);
+    box-shadow: none;
+    color: var(--white);
+}

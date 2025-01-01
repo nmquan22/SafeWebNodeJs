@@ -1,0 +1,40 @@
+{
+    "login": {
+        "welcome": "Chào mừng",
+        "signIn": "Đăng nhập",
+        "signOut": "Đăng xuất",
+        "incorrectCredentials": "Sai tên đăng nhập hoặc mật khẩu.",
+        "loginSuccess": "Đăng nhập thành công!",
+        "loginFailure": "Đăng nhập thất bại. Vui lòng thử lại."
+    },
+    "server": {
+        "status": "Trạng thái máy chủ",
+        "online": "Máy chủ đang trực tuyến",
+        "offline": "Máy chủ đang ngoại tuyến",
+        "maintenance": "Máy chủ đang bảo trì",
+        "error": "Máy chủ gặp lỗi"
+    },
+    "profile": {
+        "editProfile": "Chỉnh sửa hồ sơ",
+        "viewProfile": "Xem hồ sơ",
+        "updateSuccess": "Cập nhật hồ sơ thành công",
+        "updateFailure": "Cập nhật hồ sơ thất bại",
+        "username": "Tên đăng nhập",
+        "email": "Email",
+        "password": "Mật khẩu"
+    },
+    "crud": {
+        "create": "Tạo",
+        "read": "Đọc",
+        "update": "Cập nhật",
+        "delete": "Xóa",
+        "createSuccess": "Tạo mục thành công",
+        "readSuccess": "Lấy mục thành công",
+        "updateSuccess": "Cập nhật mục thành công",
+        "deleteSuccess": "Xóa mục thành công",
+        "createFailure": "Tạo mục thất bại",
+        "readFailure": "Lấy mục thất bại",
+        "updateFailure": "Cập nhật mục thất bại",
+        "deleteFailure": "Xóa mục thất bại"
+    }
+}
