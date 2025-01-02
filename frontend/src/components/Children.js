@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../styles/Children.css";
-import LoadingSpinner from "../components/LoadingSpinner"; // Import your spinner component
-import ErrorPage from "../components/ErrorPage"; // Import your error page component
+import LoadingSpinner from "../components/LoadingSpinner.js"; // Import your spinner component
+import ErrorPage from "../pages/ErrorPage.js"; // Import your error page component
 
 const Children = () => {
   const [childrenData, setChildrenData] = useState([]);

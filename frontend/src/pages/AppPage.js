@@ -5,7 +5,7 @@ import "../styles/AppPage.css";
 import { appRoutes, routes } from "../constants/routes.js";
 import Sidebar from "../components/Sidebar.js";
 import Dashboard from "../components/Dashboard.js";
-import Children from "../components/Dashboard.js";
+import Children from "../components/Children.js";
 import Settings from "../components/Settings.js";
 
 const AppPage = () => {
