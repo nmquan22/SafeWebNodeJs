@@ -1,5 +1,6 @@
 import { useEffect, useState, createContext, useContext } from 'react';
 import FormData from "form-data";
+import axios from 'axios';
 import { apiRoutes } from '../constants/routes';
 import axiosInstance from '../axiosConfig';
 
@@ -10,9 +11,14 @@ export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [username, setUsername] = useState('');
+    const [error, setError] = useState(null);
+    const [errorCode, setErrorCode] = useState('');
+    const [isValid, setIsValid] = useState('');
 
     const Authorize = async (username, password) => {
         setIsLoading(true);
+        setError(null);
+        let response;
         try {
             if (!username || !password) {
                 setIsAuthenticated(false);
@@ -25,16 +31,34 @@ export const AuthProvider = ({ children }) => {
 
             console.log("Authorize called with:", username, password);
 
-            // Mock authentication logic
-            if (username === "Admin" && password === "test") {
+            try {
+                response = await axios.get(`http://localhost:5000/password/${username}`);
+                setError(null);
+              } catch (err) {
+                if (err.response && err.response.status === 404) {
+                  setError('User not found');
+                  setErrorCode('User not found');
+                  console.log("API failed with", errorCode);
+                } else {
+                  setError('Internal server error');
+                  setErrorCode('Internal server error');
+                  console.log("API failed with", errorCode);
+                }
+              }
+            console.log("Checking called with:", isValid," ",password);
+            if (response.data.password === password) {
                 setIsAuthenticated(true);
+                setErrorCode("");
                 return true; // Authentication success
             } else {
+                setError("Wrong username or password");
                 setIsAuthenticated(false);
+                setErrorCode(error);
                 return false; // Authentication failure
             }
         } catch (error) {
-            console.error("Authorization error:", error);
+            setError("Authorization error:", error);
+            setErrorCode(error);
             setIsAuthenticated(false);
             return false; // Explicitly return failure on error
         } finally {
@@ -43,7 +67,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, isLoading, username, setUsername, Authorize }}>
+        <AuthContext.Provider value={{ isAuthenticated, isLoading, username, setUsername, Authorize, errorCode }}>
             {children}
         </AuthContext.Provider>
     );

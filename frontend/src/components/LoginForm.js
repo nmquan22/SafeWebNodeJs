@@ -5,7 +5,8 @@ import { useAuth } from "../contexts/authContext";
 
 const LoginForm = () => {
     const navigate = useNavigate();
-    const { setUsername, Authorize } = useAuth();
+    const { setUsername, Authorize, errorCode } = useAuth();
+    const [error, setError] = useState(null);
     const [errorMessage, setErrorMessage] = useState("");
 
     const handleSubmit = async (e) => {
@@ -28,9 +29,11 @@ const LoginForm = () => {
                 setErrorMessage("Wrong username or password");
             }
         } catch (error) {
-            console.error("Authorization error:", error);
-            setErrorMessage("An error occurred during login. Please try again.");
+            //console.error("Authorization error:", error);
+            setErrorMessage("Authorization error:", error);
         }
+
+        console.log(errorCode);
     };
 
     return (
