@@ -253,20 +253,16 @@ app.get('/childrenlist/:username', async (req, res) => {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    // Check the role of the input user
-    if (inputUser.role === "child") {
-      return res.json(null); // Return None for "child"
-    }
+    // Use the organ_id of the input user's document to find related users with role "child"
+    const relatedChildren = await User.find({
+      organ_id: inputUser.organ_id,
+      role: "child"
+    }).select('username -_id');
 
-    if (inputUser.role === "admin") {
-      // Use the organ_id of the input user's document to find related users
-      const relatedUsers = await User.find({ organ_id: inputUser.organ_id }).select('username -_id');
-      const usernames = relatedUsers.map(user => user.username);
-      return res.json(usernames); // Return list of usernames
-    }
+    // Extract usernames
+    const usernames = relatedChildren.map(user => user.username);
 
-    // Handle unexpected roles
-    res.status(400).json({ message: 'Invalid role for user' });
+    return res.json(usernames); // Return list of usernames
   } catch (err) {
     res.status(500).json({ error: 'Internal server error' });
   }
