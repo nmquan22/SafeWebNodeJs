@@ -17,8 +17,7 @@ const Settings = () => {
         setUserSettings(response.data);
         setFormData({
           name: response.data.name,
-          birthdayT: response.data.birthday.t,
-          birthdayI: response.data.birthday.i,
+          birthday: response.data.birthday,
           account: response.data.account,
         });
       } catch (error) {
@@ -44,10 +43,7 @@ const Settings = () => {
     e.preventDefault();
     const updatedData = {
       name: formData.name,
-      birthday: {
-        t: formData.birthdayT,
-        i: formData.birthdayI,
-      },
+      birthday: formData.birthday,
       account: formData.account,
     };
 
@@ -68,8 +64,8 @@ const Settings = () => {
       {userSettings ? (
         <div>
           <h1>Settings</h1>
-          <form onSubmit={handleSubmit}>
-            <div>
+          <form onSubmit={handleSubmit} className="settings-table">
+            <div className="table-row">
               <label>Name:</label>
               <input
                 type="text"
@@ -79,37 +75,31 @@ const Settings = () => {
               />
             </div>
 
-            <div>
-              <label>Birthday (t):</label>
+            <div className="table-row">
+              <label>Birthday:</label>
               <input
-                type="number"
-                name="birthdayT"
-                value={formData.birthdayT}
+                type="string"
+                name="birthday"
+                value={formData.birthday}
                 onChange={handleChange}
               />
             </div>
 
-            <div>
-              <label>Birthday (i):</label>
-              <input
-                type="number"
-                name="birthdayI"
-                value={formData.birthdayI}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div>
+            <div className="table-row">
               <label>Account:</label>
               <input
                 type="text"
                 name="account"
                 value={formData.account}
                 onChange={handleChange}
+                disabled
               />
             </div>
 
-            <button type="submit">Save Changes</button>
+            <div className="buttons">
+              <button type="submit" className="save-button">Save</button>
+              <button type="button" className="cancel-button" onClick={() => alert("Changes discarded")}>Cancel</button>
+            </div>
           </form>
         </div>
       ) : (
