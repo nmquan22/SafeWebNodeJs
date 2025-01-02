@@ -19,7 +19,7 @@ const LoginPage = () => {
     }
   }, [isLoading, isAuthenticated, navigate]);
 
-  if (isLoading) {
+  if (isLoading && isAuthenticated) {
     return <LoadingSpinner />
   }
 
