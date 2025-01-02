@@ -7,13 +7,9 @@ const Sidebar = ({ activeSection }) => {
     const navigate = useNavigate();
 
     const menuItems = [
-        { route: appRoutes.OVERVIEW, label: "Tổng quan" },
-        { route: appRoutes.COMRADES, label: "Hồ sơ Đảng viên" },
-        { route: appRoutes.CANDIDATES, label: "Hồ sơ Đảng vụ" },
-        { route: appRoutes.EVENTS, label: "Sự kiện sắp tới" },
-        { route: appRoutes.DOCUMENTS, label: "Tài liệu" },
-        { route: appRoutes.FORMS, label: "Biểu mẫu" },
-        { route: appRoutes.SIGNOUT, label: "Đăng xuất" },
+        { route: appRoutes.OVERVIEW, label: "Dashboard" },
+        { route: appRoutes.COMRADES, label: "Child list" },
+
     ];
 
     const handleItemClick = (route) => {
