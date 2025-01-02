@@ -259,6 +259,33 @@ app.get('/childrenlist/:username', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+// Endpoint to add a new user document
+app.post('/add-user', async (req, res) => {
+  try {
+    const { organ_id, personal_information, role, rules, password, username } = req.body;
+
+    if (!organ_id || !personal_information || !role || !rules || !password || !username) {
+      return res.status(400).json({ success: false, message: 'All fields are required' });
+    }
+
+    const newUser = new User({
+      organ_id,
+      personal_information,
+      role,
+      rules,
+      password,
+      username
+    });
+
+    // Save the new user to the database
+    const savedUser = await newUser.save();
+
+    res.status(201).json({ success: true, message: 'User added successfully', user: savedUser });
+  } catch (err) {
+    res.status(500).json({ success: false, error: 'Internal server error' });
+  }
+});
+
 
 
 // Start the server
