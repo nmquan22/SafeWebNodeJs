@@ -10,6 +10,7 @@ const appRoutes = {
   CHILDREN: "children",
   SETTING: "setting",
   SIGNOUT: routes.LOGOUT,
+  ADDCHILDREN: "add_children"
 };
 
 const apiRoutes = {
