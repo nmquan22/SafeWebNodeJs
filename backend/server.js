@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
   organ_id: { type: String },
   personal_information: {
     name: { type: String },
-    birthday: { type: String },
+    birthday: { type: Date },
     account: { type: String },
   },
   role: { type: String },
