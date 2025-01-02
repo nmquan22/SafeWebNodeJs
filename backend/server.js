@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema({
   },
   role: { type: String },
   rules: {
-    time_active: [{ type: Number }]
+    time_active: [{ type: Number }],
     time_limit: { type: mongoose.Schema.Types.Decimal128 },
     block_website: { type: [String] },
     black_list_filter: { type: [String] },
