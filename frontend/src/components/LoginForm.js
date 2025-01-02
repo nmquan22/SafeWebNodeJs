@@ -47,7 +47,7 @@ const LoginForm = () => {
                         name="username"
                         id="username"
                         placeholder="Username"
-                        className="p-6"
+                        className="p6"
                     />
                     <br />
                 </label>
@@ -58,7 +58,7 @@ const LoginForm = () => {
                         name="password"
                         id="password"
                         placeholder="Password"
-                        className="p-6"
+                        className="p6"
                     />
                     <br />
                 </label>
