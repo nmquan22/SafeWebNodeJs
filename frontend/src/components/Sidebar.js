@@ -12,6 +12,12 @@ const Sidebar = ({ activeSection }) => {
 
     ];
 
+    const settingItems = [
+        { route: appRoutes.DASHBOARD, label: "Dashboard" },
+        { route: appRoutes.SIGNOUT, label: "Log out" },
+
+    ];
+
     const handleNavigateToParent = () => {
         const pathSections = location.pathname.split("/").filter(Boolean); // Split and remove empty strings
         if (pathSections.length > 1) {
@@ -26,21 +32,41 @@ const Sidebar = ({ activeSection }) => {
     const handleItemClick = (route) => {
 
         console.log(location)
-        handleNavigateToParent()
+        //handleNavigateToParent()
         navigate(route);
     };
 
     return (
-        <ul>
-            {menuItems.map((item) => (
-                <li
-                    key={item.route}
-                    className={activeSection === item.route ? "active" : ""}
-                    onClick={() => handleItemClick(item.route)}>
-                    {item.label}
-                </li>
-            ))}
-        </ul>
+        <div className = "container"r>
+            <div className="headerContainer">
+                <h1>
+                    SafeChild
+                </h1>
+            </div>
+            <ul>
+                {menuItems.map((item) => (
+                    <li
+                        key={item.route}
+                        className={activeSection === item.route ? "active" : ""}
+                        onClick={() => handleItemClick(item.route)}>
+                        {item.label}
+                    </li>
+                ))}
+            </ul>
+            <div className="footerContainer">
+                <ul>
+                    {settingItems.map((item) => (
+                        <li
+                            key={item.route}
+                            className={activeSection === item.route ? "active" : ""}
+                            onClick={() => handleItemClick(item.route)}>
+                            {item.label}
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </div>
+        
     );
 };
 

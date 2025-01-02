@@ -1,6 +1,8 @@
 const TitleMap = {
   "/login": "Login",
   "/app/dashboard": "Dashboard",
+  "/app/children": "Children",
+  "/logout": "Log Out",
 };
 
 const DynamicTitle = (path) => {
