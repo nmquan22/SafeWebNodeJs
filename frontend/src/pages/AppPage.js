@@ -25,6 +25,9 @@ const AppPage = () => {
     if (!isLoading && !isAuthenticated) {
       navigate(routes.LOGIN);
     }
+    if (!isLoading && isAuthenticated && location.pathname === routes.APP) {
+      navigate(appRoutes.DASHBOARD); // Redirect to dashboard when authenticated
+    }
   }, [isLoading, isAuthenticated, navigate]);
 
   useEffect(() => {
@@ -46,10 +49,7 @@ const AppPage = () => {
         <div className="RightContent">
           <Routes>
             <Route path={appRoutes.DASHBOARD} element={<Dashboard />} />
-            <Route
-              path="*"
-              element={<Navigate to={appRoutes.DASHBOARD} replace />}
-            />
+            <Route path="*" element={<Navigate to={appRoutes.DASHBOARD} replace />} />
           </Routes>
         </div>
       </div>

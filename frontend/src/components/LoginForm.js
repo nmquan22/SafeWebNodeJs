@@ -2,13 +2,11 @@ import "../styles/LoginForm.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/authContext";
-import { apiRoutes } from "../constants/routes";
-import axiosInstance from '../axiosConfig';
 
 const LoginForm = () => {
     const navigate = useNavigate();
-    const { setUsername, Authorize, isAuthenticated } = useAuth();
-    const [errorMessage, setErrorMessage] = useState(""); // State to hold error message
+    const { setUsername, Authorize } = useAuth();
+    const [errorMessage, setErrorMessage] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -17,29 +15,27 @@ const LoginForm = () => {
         const username = formData.get('username');
         const password = formData.get('password');
 
-        setUsername(username); 
-        console.log(username)
-        console.log(password)
+        setUsername(username);
+        console.log(username, password);
 
         try {
-            await Authorize(username, password);
+            const isAuthSuccess = await Authorize(username, password);
 
-                    
-            if (isAuthenticated) {
+            if (isAuthSuccess) {
                 setErrorMessage("");
                 navigate("/app");
             } else {
                 setErrorMessage("Wrong username or password");
             }
-        }
-        catch (error) {
+        } catch (error) {
             console.error("Authorization error:", error);
+            setErrorMessage("An error occurred during login. Please try again.");
         }
     };
 
     return (
         <div className="LoginForm">
-            <h1> Sign In </h1>
+            <h1>Sign In</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="username">
                     Username <br />
@@ -49,9 +45,9 @@ const LoginForm = () => {
                         id="username"
                         placeholder="Username"
                         className="p-6"
-                    />{" "}
+                    />
                     <br />
-                </label>{" "}
+                </label>
                 <label htmlFor="password">
                     Password <br />
                     <input
@@ -60,15 +56,16 @@ const LoginForm = () => {
                         id="password"
                         placeholder="Password"
                         className="p-6"
-                    />{" "}
+                    />
                     <br />
                 </label>
-                <button formMethod="POST" type="submit" className="bg-zinc-500">
-                    {" "}
-                    Login {" "}
+                <button type="submit" className="bg-zinc-500">
+                    Login
                 </button>
-                {errorMessage !== "" && (
-                    <p className={`error-message ${errorMessage ? "active" : ""}`}>{errorMessage}</p>
+                {errorMessage && (
+                    <p className={`error-message ${errorMessage ? "active" : ""}`}>
+                        {errorMessage}
+                    </p>
                 )}
             </form>
         </div>
