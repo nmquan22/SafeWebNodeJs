@@ -1,0 +1,11 @@
+{
+  "name": "SafeWebNodeJs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/nmquan22/SafeWebNodeJs.git",
+  "author": "nmquan22 <128149552+nmquan22@users.noreply.github.com>",
+  "license": "MIT",
+  "dependencies": {
+    "react-router-dom": "^7.1.1"
+  }
+}

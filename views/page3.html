@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Block Browser</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="layout">
+        <nav class="sidebar">
+            <h2>SafeWeb</h2>
+            <ul>
+                <li><a href="/">Dashboard</a></li>
+                <li><a href="/view-blocks">View Block Content</a></li>
+            </ul>
+        </nav>
+        <main class="content">
+            <h1>Add Block Browser</h1>
+            <form action="/save-block" method="POST">
+                <div>
+                    <label for="url">Add URL:</label>
+                    <input type="text" id="url" name="url" placeholder="Enter URL link" required>
+                </div>
+                <div>
+                    <label for="children">Choose Children:</label>
+                    <input type="text" id="children" name="children" placeholder="Enter ID or name of children" required>
+                </div>
+                <div>
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div>
+                    <label for="website">Name of Website:</label>
+                    <input type="text" id="website" name="website" placeholder="Enter name of website" required>
+                </div>
+                <button type="submit">Apply</button>
+            </form>
+        </main>
+    </div>
+</body>
+</html>

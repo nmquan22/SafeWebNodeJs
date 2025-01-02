@@ -12,7 +12,7 @@ const AppPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [activeSection, setActiveSection] = useState("");
-  const { isAuthenticated, isLoading } = useAuth();
+  const { isAuthenticated, isLoading} = useAuth();
 
   // Redirect to /login if unauthenticated or to /app/dashboard if authenticated
   useEffect(() => {
