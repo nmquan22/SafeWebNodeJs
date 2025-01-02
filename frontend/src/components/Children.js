@@ -62,6 +62,9 @@ const Children = () => {
               <td>{child.birthday}</td>
             </tr>
           ))}
+          <button type="addchildren" className="bg-zinc-500">
+              Add children
+          </button>
         </tbody>
       </table>
     </div>

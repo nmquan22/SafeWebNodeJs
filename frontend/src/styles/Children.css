@@ -83,3 +83,29 @@
     font-size: 20px;
   }
 }
+.addchildren-button {
+  position: fixed;
+  bottom: 20px; /* Distance from the bottom */
+  left: 50%;
+  transform: translateX(-50%); /* Center horizontally */
+  background-color: #6a0dad; /* Purple color */
+  color: white; /* White text */
+  padding: 12px 24px; /* Padding for size */
+  border: none; /* No border */
+  border-radius: 8px; /* Rounded corners */
+  font-size: 18px; /* Text size */
+  font-weight: bold; /* Bold text */
+  cursor: pointer; /* Pointer cursor on hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+.addchildren-button:hover {
+  background-color: #7a0ece; /* Lighter purple on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Slightly stronger shadow on hover */
+}
+
+.addchildren-button:active {
+  background-color: #580b9c; /* Darker purple when clicked */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2); /* Smaller shadow */
+}
