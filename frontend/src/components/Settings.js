@@ -13,12 +13,24 @@ const Settings = () => {
   useEffect(() => {
     const fetchUserSettings = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/personal-information/${username}`);
+        const response = await axios.get(`http://localhost:5000/user/${username}`);
         setUserSettings(response.data);
         setFormData({
-          name: response.data.name,
-          birthday: response.data.birthday,
-          account: response.data.account,
+          organ_id: response.data.organ_id,
+          personal_information: {
+            name: response.data.personal_information.name,
+            birthday: response.data.personal_information.birthday,
+            account: response.data.personal_information.account,
+          },
+          role: response.data.role,
+          rules: {
+            time_active: response.data.rules.time_active,
+            time_limit: response.data.rules.time_limit,
+            block_website: response.data.rules.block_website,
+            black_list_filter: response.data.rules.black_list_filter,
+          },
+          password: response.data.password,
+          username: response.data.username,
         });
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -32,24 +44,50 @@ const Settings = () => {
   }, [username]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    const { name, value, type, checked, dataset } = e.target;
+  
+    setFormData((prev) => {
+      if (dataset.nested) {
+        const [parent, child] = name.split(".");
+        return {
+          ...prev,
+          [parent]: {
+            ...prev[parent],
+            [child]: type === "checkbox" ? checked : value,
+          },
+        };
+      }
+  
+      return {
+        ...prev,
+        [name]: type === "checkbox" ? checked : value,
+      };
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const updatedData = {
-      name: formData.name,
-      birthday: formData.birthday,
-      account: formData.account,
+      organ_id: formData.organ_id,
+      personal_information: {
+        name: formData.personal_information.name,
+        birthday: formData.personal_information.birthday,
+        account: formData.personal_information.account,
+      },
+      role: formData.role,
+      rules: {
+        time_active: formData.rules.time_active,
+        time_limit: formData.rules.time_limit,
+        block_website: formData.rules.block_website,
+        black_list_filter: formData.rules.black_list_filter,
+      },
+      password: formData.password,
+      username: formData.username,
     };
 
     try {
       const response = await axios.put(
-        `http://localhost:5000/personal-information/${username}`,
+        `http://localhost:5000/user/${username}`,
         updatedData
       );
       alert(response.data.message);  // Show the success message returned from the API
@@ -69,19 +107,10 @@ const Settings = () => {
               <label>Name:</label>
               <input
                 type="text"
-                name="name"
-                value={formData.name}
+                name="personal_information.name"
+                value={formData.personal_information.name}
                 onChange={handleChange}
-              />
-            </div>
-
-            <div className="table-row">
-              <label>Birthday:</label>
-              <input
-                type="string"
-                name="birthday"
-                value={formData.birthday}
-                onChange={handleChange}
+                data-nested="true"
               />
             </div>
 
@@ -89,10 +118,23 @@ const Settings = () => {
               <label>Account:</label>
               <input
                 type="text"
-                name="account"
-                value={formData.account}
+                name="personal_information.account"
+                value={formData.personal_information.account}
+                className={"no-underline"}
                 onChange={handleChange}
                 disabled
+                data-nested="true"
+              />
+            </div>
+
+            <div className="table-row">
+              <label>Birthday:</label>
+              <input
+                type="date"
+                name="personal_information.birthday"
+                value={formData.personal_information.birthday}
+                onChange={handleChange}
+                data-nested="true"
               />
             </div>
 
