@@ -13,7 +13,7 @@ const Sidebar = ({ activeSection }) => {
     ];
 
     const settingItems = [
-        { route: appRoutes.DASHBOARD, label: "Dashboard" },
+        { route: appRoutes.SETTING, label: "Setting" },
         { route: appRoutes.SIGNOUT, label: "Log out" },
 
     ];

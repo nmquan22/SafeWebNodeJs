@@ -18,20 +18,12 @@ const userSchema = new mongoose.Schema({
   organ_id: { type: String },
   personal_information: {
     name: { type: String },
-    birthday: {
-      t: { type: Number },
-      i: { type: Number },
-    },
+    birthday: { type: Date },
     account: { type: String },
   },
   role: { type: String },
   rules: {
-    time_active: [
-      {
-        t: { type: Number },
-        i: { type: Number },
-      },
-    ],
+    time_active: [{ type: Number }],
     time_limit: { type: mongoose.Schema.Types.Decimal128 },
     block_website: { type: [String] },
     black_list_filter: { type: [String] },
@@ -49,6 +41,20 @@ app.get('/password/:username', async (req, res) => {
     const user = await User.findOne({ username: req.params.username });
     if (user) {
       res.json({ password: user.password });
+    } else {
+      res.status(404).json({ message: 'User not found' });
+    }
+  } catch (err) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// Endpoint to get organ_id for a specific user
+app.get('/organ_id/:username', async (req, res) => {
+  try {
+    const user = await User.findOne({ username: req.params.username });
+    if (user) {
+      res.json({ password: user.organ_id });
     } else {
       res.status(404).json({ message: 'User not found' });
     }
@@ -267,6 +273,33 @@ app.get('/childrenlist/:username', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+// Endpoint to add a new user document
+app.post('/add-user', async (req, res) => {
+  try {
+    const { organ_id, personal_information, role, rules, password, username } = req.body;
+
+    if (!organ_id || !personal_information || !role || !rules || !password || !username) {
+      return res.status(400).json({ success: false, message: 'All fields are required' });
+    }
+
+    const newUser = new User({
+      organ_id,
+      personal_information,
+      role,
+      rules,
+      password,
+      username
+    });
+
+    // Save the new user to the database
+    const savedUser = await newUser.save();
+
+    res.status(201).json({ success: true, message: 'User added successfully', user: savedUser });
+  } catch (err) {
+    res.status(500).json({ success: false, error: 'Internal server error' });
+  }
+});
+
 
 
 // Start the server

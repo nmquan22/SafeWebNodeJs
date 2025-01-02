@@ -14,6 +14,13 @@
     padding: 1rem;
 }
 
+.LoginForm input {
+    font-family: "Be Vietnam Pro";
+    font-size: 16px;
+
+    padding: 1rem;
+}
+
 .LoginForm form {
     padding: 1rem;
 }

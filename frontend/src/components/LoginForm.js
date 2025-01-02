@@ -13,8 +13,8 @@ const LoginForm = () => {
         e.preventDefault();
 
         const formData = new FormData(e.target);
-        const username = formData.get('username');
-        const password = formData.get('password');
+        const username = formData.get('username').trim();
+        const password = formData.get('password').trim();
 
         setUsername(username);
         console.log(username, password);
@@ -47,7 +47,7 @@ const LoginForm = () => {
                         name="username"
                         id="username"
                         placeholder="Username"
-                        className="p-6"
+                        className="p6"
                     />
                     <br />
                 </label>
@@ -58,7 +58,7 @@ const LoginForm = () => {
                         name="password"
                         id="password"
                         placeholder="Password"
-                        className="p-6"
+                        className="p6"
                     />
                     <br />
                 </label>
