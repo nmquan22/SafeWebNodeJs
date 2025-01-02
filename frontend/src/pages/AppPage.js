@@ -1,43 +1,37 @@
-// Libs and frameworks
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/authContext.js";
-
-// Stylesheets
 import "../styles/AppPage.css";
-
-// Routes and locales
 import { appRoutes, routes } from "../constants/routes.js";
-
-// Import components
 import Sidebar from "../components/Sidebar.js";
 import Dashboard from "../components/Dashboard.js";
+import Children from "../components/Dashboard.js";
 
 const AppPage = () => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const location = useLocation();
   const [activeSection, setActiveSection] = useState("");
-  const { isAuthenticated, isLoading } = useAuth()
+  const { isAuthenticated, isLoading } = useAuth();
 
-  // Redirect to /login if unauthenticated
+  // Redirect to /login if unauthenticated or to /app/dashboard if authenticated
   useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
-      navigate(routes.LOGIN);
+    if (!isLoading) {
+      if (!isAuthenticated) {
+        navigate(routes.LOGIN, { replace: true }); // Redirect to login
+      } else if (location.pathname === routes.APP) {
+        navigate(appRoutes.DASHBOARD, { replace: true }); // Redirect to dashboard
+      }
     }
-    if (!isLoading && isAuthenticated && location.pathname === routes.APP) {
-      navigate(appRoutes.DASHBOARD); // Redirect to dashboard when authenticated
-    }
-  }, [isLoading, isAuthenticated, navigate]);
+  }, [isLoading, isAuthenticated, location.pathname, navigate]);
 
+  // Update activeSection based on URL
   useEffect(() => {
-    // Extracting the section from the current path
     const pathSections = location.pathname.split("/");
-    setActiveSection(pathSections[2]); // Using index 1 to get the second element
+    setActiveSection(pathSections[2] || ""); // Get the second part of the URL
   }, [location.pathname]);
 
   if (isLoading) {
-    return <LoadingSpinner />
+    return <LoadingSpinner />;
   }
 
   return (
@@ -49,6 +43,7 @@ const AppPage = () => {
         <div className="RightContent">
           <Routes>
             <Route path={appRoutes.DASHBOARD} element={<Dashboard />} />
+            <Route path={appRoutes.CHILDREN} element={<Children />} />
             <Route path="*" element={<Navigate to={appRoutes.DASHBOARD} replace />} />
           </Routes>
         </div>

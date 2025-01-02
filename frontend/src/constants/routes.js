@@ -7,6 +7,7 @@ const routes = {
 
 const appRoutes = {
   DASHBOARD: "dashboard",
+  CHILDREN: "children"
 };
 
 const apiRoutes = {

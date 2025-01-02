@@ -1,9 +1,11 @@
 :root {
     --blue: #271366;
+    --lightblue: #4880FF;
     --green: #13663c;
     --yellow: #bab528;
     --white: #fff;
     --red: #db2e25;
+    --gray: #F5F6FA;
     --rounded-border: 8px;
     --box-shadow-style: 0 4px 8px 0 lightblue, 0 6px 20px 0 lightblue;
     --box-gray-style: 0.5px solid rgba(128, 128, 128, 1);

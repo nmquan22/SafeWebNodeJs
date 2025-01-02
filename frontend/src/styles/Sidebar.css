@@ -1,8 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap');
+
+.LeftSidebar ul {
+    width: 100%;
+}
+
 .LeftSidebar ul li {
+    width: 90%;
     display: flex;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 700; /* Bold weight */
     border-radius: var(--rounded-border);
     margin: 1.2rem;
-    padding: 0.8rem;
+    padding: 1.5rem;
     user-select: none;
 }
 
@@ -14,6 +23,6 @@
 
 .LeftSidebar ul li.active {
     color: var(--white);
-    background-color: var(--blue);
+    background-color: var(--lightblue);
     user-select: none;
 }
