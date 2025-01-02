@@ -49,6 +49,20 @@ app.get('/password/:username', async (req, res) => {
   }
 });
 
+// Endpoint to get organ_id for a specific user
+app.get('/organ_id/:username', async (req, res) => {
+  try {
+    const user = await User.findOne({ username: req.params.username });
+    if (user) {
+      res.json({ password: user.organ_id });
+    } else {
+      res.status(404).json({ message: 'User not found' });
+    }
+  } catch (err) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 app.post('/validate-user', async (req, res) => {
   try {
     const { username, password } = req.body;
