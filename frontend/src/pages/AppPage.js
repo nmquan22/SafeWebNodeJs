@@ -5,13 +5,13 @@ import "../styles/AppPage.css";
 import { appRoutes, routes } from "../constants/routes.js";
 import Sidebar from "../components/Sidebar.js";
 import Dashboard from "../components/Dashboard.js";
-import Children from "../components/Dashboard.js";
+import Children from "../components/Children.js";
 
 const AppPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [activeSection, setActiveSection] = useState("");
-  const { isAuthenticated, isLoading } = useAuth();
+  const { isAuthenticated, isLoading} = useAuth();
 
   // Redirect to /login if unauthenticated or to /app/dashboard if authenticated
   useEffect(() => {
