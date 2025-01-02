@@ -1,0 +1,39 @@
+.ChildrenTableContainer {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .ChildrenTableContainer h2 {
+    margin-bottom: 15px;
+    text-align: center;
+    color: #333;
+  }
+  
+  .ChildrenTable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .ChildrenTable th,
+  .ChildrenTable td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .ChildrenTable th {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .ChildrenTable tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .ChildrenTable tr:hover {
+    background-color: #ddd;
+  }
+
