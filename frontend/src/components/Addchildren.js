@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import '../styles/Addchildren.css';
 
-const UpdateOrganId = ({ currentUsername }) => {
+const Addchildren = ({ currentUsername }) => {
   const [formData, setFormData] = useState({
     username: "",  // The username of the user whose organ_id you want to update
   });
@@ -99,4 +99,4 @@ const UpdateOrganId = ({ currentUsername }) => {
   );
 };
 
-export default UpdateOrganId;
+export default Addchildren;

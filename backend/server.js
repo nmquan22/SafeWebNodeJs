@@ -299,6 +299,29 @@ app.post('/add-user', async (req, res) => {
     res.status(500).json({ success: false, error: 'Internal server error' });
   }
 });
+// **UPDATE ORGAN_ID**
+app.put('/organ_id/:username', async (req, res) => {
+  try {
+    const { organ_id } = req.body;
+    if (!organ_id) {
+      return res.status(400).json({ message: 'Organ ID is required' });
+    }
+
+    const user = await User.findOneAndUpdate(
+      { username: req.params.username },
+      { organ_id: organ_id },
+      { new: true }  // Return the updated user document
+    );
+
+    if (user) {
+      res.json({ message: 'Organ ID updated successfully', user });
+    } else {
+      res.status(404).json({ message: 'User not found' });
+    }
+  } catch (err) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 
 

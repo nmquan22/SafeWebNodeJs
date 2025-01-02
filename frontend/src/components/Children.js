@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../styles/Children.css";
 import LoadingSpinner from "../components/LoadingSpinner"; 
 import { useAuth } from "../contexts/authContext";// Import your spinner component
+import { useNavigate } from "react-router-dom"; 
 //import ErrorPage from "../components/ErrorPage"; // Import your error page component
 
 const Children = () => {
@@ -39,6 +40,9 @@ const Children = () => {
   if (loading) {
     return  <LoadingSpinner />;
   }
+  const handleAddChildren = () => {
+    navigate("/add_children"); // Navigate to the add-children route
+  };
   const formatDate = (date) => {
     if (!(date instanceof Date) || isNaN(date)) return "Invalid Date";
     return date.toLocaleDateString("en-GB"); // Formats as dd/mm/yyyy
@@ -62,7 +66,7 @@ const Children = () => {
               <td>{child.birthday}</td>
             </tr>
           ))}
-          <button type="addchildren" className="bg-zinc-500">
+          <button type="addchildren" className="bg-zinc-500" onClick={handleAddChildren}>
               Add children
           </button>
         </tbody>
