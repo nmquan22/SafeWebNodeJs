@@ -32,7 +32,10 @@ export const AuthProvider = ({ children }) => {
             console.log("Authorize called with:", username, password);
 
             try {
-                response = await axios.get(`http://localhost:5000/password/${username}`);
+                response = await axios.post('http://localhost:5000/validate-user', {
+                    username,
+                    password,
+                  });
                 setError(null);
               } catch (err) {
                 if (err.response && err.response.status === 404) {
@@ -46,7 +49,7 @@ export const AuthProvider = ({ children }) => {
                 }
               }
             console.log("Checking called with:", isValid," ",password);
-            if (response.data.password === password) {
+            if (response.data.success) {
                 setIsAuthenticated(true);
                 setErrorCode("");
                 return true; // Authentication success

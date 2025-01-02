@@ -57,6 +57,25 @@ app.get('/password/:username', async (req, res) => {
   }
 });
 
+app.post('/validate-user', async (req, res) => {
+  try {
+    const { username, password } = req.body;
+
+    if (!username || !password) {
+      return res.status(400).json({ success: false, message: 'Username and password are required' });
+    }
+
+    const user = await User.findOne({ username: username });
+    if (user && user.password === password) {
+      return res.json({ success: true, message: 'Credentials are valid' });
+    } else {
+      return res.json({ success: false, message: 'Invalid username or password' });
+    }
+  } catch (err) {
+    res.status(500).json({ success: false, error: 'Internal server error' });
+  }
+});
+
 // Endpoint to get personal information for a specific user
 app.get('/personal-information/:username', async (req, res) => {
   try {
