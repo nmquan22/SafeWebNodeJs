@@ -243,6 +243,35 @@ app.get('/website_time_limit/:username', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+// Function to get usernames with the same organ_id
+app.get('/childrenlist/:username', async (req, res) => {
+  try {
+    // Fetch the document for the input username
+    const inputUser = await User.findOne({ username: req.params.username });
+
+    if (!inputUser) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Check the role of the input user
+    if (inputUser.role === "child") {
+      return res.json(null); // Return None for "child"
+    }
+
+    if (inputUser.role === "admin") {
+      // Use the organ_id of the input user's document to find related users
+      const relatedUsers = await User.find({ organ_id: inputUser.organ_id }).select('username -_id');
+      const usernames = relatedUsers.map(user => user.username);
+      return res.json(usernames); // Return list of usernames
+    }
+
+    // Handle unexpected roles
+    res.status(400).json({ message: 'Invalid role for user' });
+  } catch (err) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 
 // Start the server
 const PORT = 5000;
