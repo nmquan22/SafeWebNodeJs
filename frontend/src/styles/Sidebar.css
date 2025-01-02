@@ -16,7 +16,7 @@
 }
 
 .LeftSidebar ul li:hover {
-    background-color: var(--white);
+    background-color: var(--lightlightblue);
     color: var(--blue);
     user-select: none;
 }
