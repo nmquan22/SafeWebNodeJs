@@ -18,20 +18,12 @@ const userSchema = new mongoose.Schema({
   organ_id: { type: String },
   personal_information: {
     name: { type: String },
-    birthday: {
-      t: { type: Number },
-      i: { type: Number },
-    },
+    birthday: { type: String },
     account: { type: String },
   },
   role: { type: String },
   rules: {
-    time_active: [
-      {
-        t: { type: Number },
-        i: { type: Number },
-      },
-    ],
+    time_active: [{ type: Number }]
     time_limit: { type: mongoose.Schema.Types.Decimal128 },
     block_website: { type: [String] },
     black_list_filter: { type: [String] },
