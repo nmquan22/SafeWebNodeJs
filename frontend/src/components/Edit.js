@@ -112,12 +112,12 @@ const Edit = () => {
               );
         }
       alert(response.data.message);
-      Navigate(appRoutes.CHILDREN);
+      Navigate("/app/children");
     } catch (error) {
       //console.log(formData);
       //console.error("Error updating user data:", error);
       //alert("There was an error updating your information.");
-      Navigate(appRoutes.CHILDREN);
+      Navigate("/app/children");
     }
   };
 
@@ -141,7 +141,7 @@ const Edit = () => {
       password: formData.password,
     });
     setIsPasswordRevealed(false);
-    Navigate(appRoutes.CHILDREN);
+    Navigate("/app/children");
   };
 
   const handlePasswordClick = () => {
@@ -169,7 +169,7 @@ const Edit = () => {
     <div className="SettingsSection" id="Settings">
       {userSettings ? (
         <div>
-          <h1>Settings</h1>
+          <h1>{target === '' ? "Add Children Profile" : "Edit Children Profile"}</h1>
           <form onSubmit={handleSubmit} className="settings-table">
             <div className="table-row">
               <label>Name:</label>

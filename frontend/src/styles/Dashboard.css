@@ -1,0 +1,13 @@
+.image-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  .button-image {
+    max-width: 100%;    /* Ensure the logo scales to container */
+    max-height: 100%;   /* Ensure the logo doesn't exceed the container height */
+    object-fit: contain;
+  }
+  

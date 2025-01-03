@@ -50,7 +50,6 @@ const Children = () => {
 
   return (
     <div className="ChildrenListContainer">
-      <h2>Children Information</h2>
       <div className="ChildrenButtonList">
         {childrenData.map((child) => (
           <button
