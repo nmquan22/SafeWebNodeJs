@@ -2,6 +2,8 @@ const TitleMap = {
   "/login": "Login",
   "/app/dashboard": "Dashboard",
   "/app/children": "Children",
+  "/app/setting": "Setting",
+  "/app/edit": "Edit",
   "/logout": "Log Out",
 };
 
