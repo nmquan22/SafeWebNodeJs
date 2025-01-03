@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "../styles/Children.css";
+import { useNavigate } from "react-router-dom";
 import LoadingSpinner from "../components/LoadingSpinner"; 
-import { useAuth } from "../contexts/authContext";// Import your spinner component
-//import ErrorPage from "../components/ErrorPage"; // Import your error page component
+import { useAuth } from "../contexts/authContext";
+import { appRoutes, routes } from "../constants/routes";
 
 const Children = () => {
   const [childrenData, setChildrenData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { username } = useAuth();
-  // Fetch data from the API
+  const { username, target, setTarget } = useAuth();
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchChildrenData = async () => {
       try {
@@ -18,10 +20,10 @@ const Children = () => {
           throw new Error("Failed to fetch data");
         }
         const usernames = await response.json();
-        // Fetch full info for each username
+
         const childrenInfo = await Promise.all(
           usernames.map(async (childUsername) => {
-            const childResponse = await fetch(`http://localhost:5000/personal-information/${childUsername}`);
+            const childResponse = await fetch(`http://localhost:5000/user/${childUsername}`);
             return childResponse.json();
           })
         );
@@ -36,34 +38,45 @@ const Children = () => {
     fetchChildrenData();
   }, []);
 
-  if (loading) {
-    return  <LoadingSpinner />;
-  }
   const formatDate = (date) => {
-    if (!(date instanceof Date) || isNaN(date)) return "Invalid Date";
-    return date.toLocaleDateString("en-GB"); // Formats as dd/mm/yyyy
+    if (!date) return "Unknown";
+    const parsedDate = new Date(date);
+    if (isNaN(parsedDate)) return "Invalid Date";
+    return parsedDate.toLocaleDateString("en-GB");
   };
+
+  if (loading) return <LoadingSpinner />;
+  if (error) return <div className="Error">{error}</div>;
+
   return (
-    <div className="ChildrenTableContainer">
+    <div className="ChildrenListContainer">
       <h2>Children Information</h2>
-      <table className="ChildrenTable">
-        <thead>
-          <tr>
-            <th>account</th>
-            <th>Name</th>
-            <th>Birthday</th>
-          </tr>
-        </thead>
-        <tbody>
-          {childrenData.map((child) => (
-            <tr key={child.account}>
-              <td>{child.account}</td>
-              <td>{child.name}</td>
-              <td>{child.birthday}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="ChildrenButtonList">
+        {childrenData.map((child) => (
+          <button
+            key={child.personal_information.account}
+            className="ChildButton"
+            onClick={() => {
+              setTarget(child.username)
+              console.log(location)
+              navigate(appRoutes.EDIT)}}
+          >
+            <div className="ChildInfo">
+              <p><strong>Name:</strong> {child.personal_information.name}</p>
+              <p><strong>Birthday:</strong> {formatDate(child.personal_information.birthday)}</p>
+            </div>
+          </button>
+        ))}
+        <button
+          className="AddButton"
+          onClick={() => {
+            setTarget('')
+            console.log(location)
+            navigate(appRoutes.EDIT)}}
+        >
+          +
+        </button>
+      </div>
     </div>
   );
 };

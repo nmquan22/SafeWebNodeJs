@@ -300,6 +300,27 @@ app.post('/add-user', async (req, res) => {
   }
 });
 
+app.get('/empty-user', (req, res) => {
+  const emptyUser = {
+    organ_id: "",
+    personal_information: {
+      name: "",
+      birthday: null,
+      account: "",
+    },
+    role: "",
+    rules: {
+      time_active: [],
+      time_limit: null,
+      block_website: [],
+      black_list_filter: [],
+    },
+    password: "",
+    username: "",
+  };
+
+  res.json(emptyUser);
+});
 
 
 // Start the server

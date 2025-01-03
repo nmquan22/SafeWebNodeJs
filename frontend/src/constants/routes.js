@@ -9,6 +9,7 @@ const appRoutes = {
   DASHBOARD: "dashboard",
   CHILDREN: "children",
   SETTING: "setting",
+  EDIT: "/app/edit",
   SIGNOUT: routes.LOGOUT,
 };
 

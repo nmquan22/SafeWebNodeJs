@@ -7,6 +7,7 @@ import Sidebar from "../components/Sidebar.js";
 import Dashboard from "../components/Dashboard.js";
 import Children from "../components/Children.js";
 import Settings from "../components/Settings.js";
+import Edit from "../components/Edit.js";
 
 const AppPage = () => {
   const navigate = useNavigate();
@@ -46,6 +47,7 @@ const AppPage = () => {
             <Route path={appRoutes.DASHBOARD} element={<Dashboard />} />
             <Route path={appRoutes.CHILDREN} element={<Children />} />
             <Route path={appRoutes.SETTING} element={<Settings />} />
+            <Route path={"edit"} element={<Edit />} />
             <Route path="*" element={<Navigate to={appRoutes.DASHBOARD} replace />} />
           </Routes>
         </div>

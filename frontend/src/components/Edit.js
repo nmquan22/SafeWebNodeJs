@@ -2,33 +2,43 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "../contexts/authContext";
 import axios from 'axios';
 import "../styles/Settings.css";
+import { appRoutes, routes } from "../constants/routes";
+import { useNavigate } from "react-router-dom";
 
-const Settings = () => {
+const Edit = () => {
   const [userSettings, setUserSettings] = useState(null);
   const [formData, setFormData] = useState({});
-  const { isAuthenticated, username } = useAuth();  
+  const { isAuthenticated, username, target } = useAuth();  
   const [isPasswordRevealed, setIsPasswordRevealed] = useState(false);
+  const Navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserSettings = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/user/${username}`);
+        let response;
+        const response2 = await axios.get(`http://localhost:5000/user/${username}`);
+        if (target !== '') {
+            response = await axios.get(`http://localhost:5000/user/${target}`);
+        }
+        else {
+            response = await axios.get(`http://localhost:5000/empty-user`);
+        }
         setUserSettings(response.data);
         setFormData({
-          organ_id: response.data.organ_id,
+          organ_id: response2.data.organ_id,
           personal_information: {
             name: response.data.personal_information.name,
             birthday: response.data.personal_information.birthday,
             account: response.data.personal_information.account,
           },
-          role: response.data.role,
+          role: "child",
           rules: {
             time_active: response.data.rules.time_active,
-            time_limit: response.data.rules.time_limit,
+            time_limit: response2.data.rules.time_limit,
             block_website: response.data.rules.block_website,
             black_list_filter: response.data.rules.black_list_filter,
           },
-          password: response.data.password,
+          password: response2.data.password,
           username: response.data.username,
         });
         setConfirmPassword(response.data.password);
@@ -41,7 +51,7 @@ const Settings = () => {
     if (username && isAuthenticated) {
       fetchUserSettings();
     }
-  }, [username]);
+  }, [target]);
 
   const handleChange = (e) => {
     const { name, value, type, checked, dataset } = e.target;
@@ -70,11 +80,6 @@ const Settings = () => {
   };
   
   const handleSaveClick = async () => {
-    if (formData.password !== confirmPassword) {
-      alert("Passwords do not match!");
-      return;
-    }
-
     const updatedData = {
       organ_id: formData.organ_id,
       personal_information: {
@@ -94,14 +99,25 @@ const Settings = () => {
     };
 
     try {
-      const response = await axios.put(
-        `http://localhost:5000/user/${username}`,
+      if (target !== '') {
+        const response = await axios.put(
+        `http://localhost:5000/user/${target}`,
         updatedData
       );
-      alert(response.data.message); // Show the success message returned from the API
+        }
+        else {
+            const response = await axios.post(
+                `http://localhost:5000/add-user`,
+                updatedData
+              );
+        }
+      alert(response.data.message);
+      Navigate(appRoutes.CHILDREN);
     } catch (error) {
-      console.error("Error updating user data:", error);
-      alert("There was an error updating your information.");
+      //console.log(formData);
+      //console.error("Error updating user data:", error);
+      //alert("There was an error updating your information.");
+      Navigate(appRoutes.CHILDREN);
     }
   };
 
@@ -125,6 +141,7 @@ const Settings = () => {
       password: formData.password,
     });
     setIsPasswordRevealed(false);
+    Navigate(appRoutes.CHILDREN);
   };
 
   const handlePasswordClick = () => {
@@ -166,15 +183,14 @@ const Settings = () => {
             </div>
 
             <div className="table-row">
-              <label>Account:</label>
+              <label>ID:</label>
               <input
                 type="text"
-                name="personal_information.account"
-                value={formData.personal_information.account}
-                className={"no-underline"}
+                name="username"
+                value={formData.username}
+                className={target === '' ? '' : "no-underline"}
                 onChange={handleChange}
-                disabled
-                data-nested="true"
+                disabled={target !== ''}
               />
             </div>
 
@@ -190,29 +206,6 @@ const Settings = () => {
                 data-nested="true"
               />
             </div>
-
-            <div className="table-row">
-              <label>Password:</label>
-              <input
-                type={isPasswordRevealed ? "text" : "password"} 
-                name="password"
-                value={formData.password}
-                onChange={handlePasswordChange}
-                onClick={handlePasswordClick} 
-              />
-            </div>
-
-            {isPasswordRevealed && (
-              <div className="table-row">
-                <label>Confirm Password:</label>
-                <input
-                  type={"text"}
-                  name="confirmPassword"
-                  value={confirmPassword}
-                  onChange={handlePasswordChange}
-                />
-              </div>
-            )}
 
             <div className="table-row">
                 <label>Time Active:</label>
@@ -286,4 +279,4 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+export default Edit;
