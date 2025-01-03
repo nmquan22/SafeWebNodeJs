@@ -1,0 +1,30 @@
+{
+    "manifest_version": 3,
+    "name": "Website Access Control",
+    "version": "1.0",
+    "description": "Controls website access based on active time, usage limits, and blocked websites.",
+    "permissions": [
+        "activeTab",
+        "storage",
+        "webRequest",
+        "declarativeNetRequest",
+        "webNavigation",
+        "tabs",
+        "scripting"
+    ],
+    "host_permissions": [ "http://localhost:5000/*" ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"], // This pattern matches all URLs
+            "js": ["content.js"], // The content script to inject
+            "run_at": "document_idle" // The script runs when the page has finished loading
+        }
+    ],
+    "action": {
+        "default_popup": "popup.html"
+    }
+
+}

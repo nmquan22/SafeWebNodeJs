@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Enter Credentials</title>
+</head>
+<body>
+    <h1>Set Credentials</h1>
+    <div id="form-container">
+        <label for="username">Username:</label>
+        <input type="text" id="username" />
+        <br />
+        <label for="secret-key">Secret Key:</label>
+        <input type="password" id="secret-key" />
+        <br />
+        <label for="gemini-api-key">GEMINI API Key:</label>
+        <input type="text" id="gemini-api-key" />
+        <br />
+        <button id="save-button">Save</button>
+    </div>
+    <div id="already-set" style="display: none;">
+        <p>Your username, secret key, and GEMINI API key are already set.</p>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
