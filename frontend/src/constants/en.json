@@ -1,0 +1,40 @@
+{
+    "login": {
+        "welcome": "Welcome",
+        "signIn": "Sign In",
+        "signOut": "Sign Out",
+        "incorrectCredentials": "Incorrect username or password.",
+        "loginSuccess": "Login successful!",
+        "loginFailure": "Login failed. Please try again."
+    },
+    "server": {
+        "status": "Server Status",
+        "online": "Server is online",
+        "offline": "Server is offline",
+        "maintenance": "Server is under maintenance",
+        "error": "Server encountered an error"
+    },
+    "profile": {
+        "editProfile": "Edit Profile",
+        "viewProfile": "View Profile",
+        "updateSuccess": "Profile updated successfully",
+        "updateFailure": "Failed to update profile",
+        "username": "Username",
+        "email": "Email",
+        "password": "Password"
+    },
+    "crud": {
+        "create": "Create",
+        "read": "Read",
+        "update": "Update",
+        "delete": "Delete",
+        "createSuccess": "Item created successfully",
+        "readSuccess": "Item retrieved successfully",
+        "updateSuccess": "Item updated successfully",
+        "deleteSuccess": "Item deleted successfully",
+        "createFailure": "Failed to create item",
+        "readFailure": "Failed to retrieve item",
+        "updateFailure": "Failed to update item",
+        "deleteFailure": "Failed to delete item"
+    }
+}

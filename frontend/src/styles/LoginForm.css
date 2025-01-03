@@ -1,0 +1,60 @@
+.LoginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--box-shadow-style);
+    position: relative;
+}
+
+.LoginForm h1 {
+    font-family: "Be Vietnam Pro";
+    font-size: 16px;
+
+    padding: 1rem;
+}
+
+.LoginForm input {
+    font-family: "Be Vietnam Pro";
+    font-size: 16px;
+
+    padding: 1rem;
+}
+
+.LoginForm form {
+    padding: 1rem;
+}
+
+.LoginForm form label {
+    padding: 0.5rem;
+    width: min-content;
+}
+
+.LoginForm form p {
+    color: var(--red);
+    font-size: large;
+}
+
+.LoginForm form button {
+    position: relative;
+}
+
+
+.error-message {
+    color: red;
+    font-size: 8px;
+    margin-top: 10px;
+    visibility: hidden; /* Hide error message by default */
+    position: absolute;
+    top: calc(100%);
+    transform: translateY(calc(-100% - 20px));
+    
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+  
+/* Show the error message only when it's set */
+.error-message.active {
+    visibility: visible;
+}

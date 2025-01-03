@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View List of Blocked Browsers</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #F5F6FA;
+        }
+        .container {
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        table thead {
+            background-color: #6c5ce7;
+            color: white;
+        }
+        table th, table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #6c5ce7;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .button:hover {
+            background-color: #5a4bcf;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>View List of Blocked Browsers</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>URL</th>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Children</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% blockedData.forEach(data => { %>
+                    <tr>
+                        <td><%= data.url %></td>
+                        <td><%= data.name %></td>
+                        <td><%= data.date %></td>
+                        <td><%= data.children %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+
+        <a href="/page3" class="button">Add Block Browser</a>
+    </div>
+</body>
+</html>

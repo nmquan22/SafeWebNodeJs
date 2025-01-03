@@ -1,9 +1,11 @@
 {
+  "name": "SafeWebNodeJs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/nmquan22/SafeWebNodeJs.git",
+  "author": "nmquan22 <128149552+nmquan22@users.noreply.github.com>",
+  "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.20.3",
-    "ejs": "^3.1.10",
-    "express": "^4.21.2",
-    "express-ejs-layouts": "^2.5.1",
-    "mongoose": "^8.8.4"
+    "react-router-dom": "^7.1.1"
   }
 }
